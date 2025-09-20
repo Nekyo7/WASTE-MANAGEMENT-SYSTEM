@@ -199,22 +199,22 @@
 
     <!-- Header -->
     <header>
-        <h1>WasteWise Solutions</h1>
+        <h1>EcoWaste Guardian</h1>
     </header>
 
     <!-- Main Content -->
     <main id="main">
         <section id="home" class="hero">
             <h2>Empowering Communities to Eliminate Waste, Together</h2>
-            <p>Join WasteWise in our mission to combat unmanaged waste. Report issues, share evidence, and help create cleaner, healthier public spaces for everyone.</p>
+            <p>Join EcoWaste Guardian in our mission to combat unmanaged waste. Report issues, share evidence, and help create cleaner, healthier public spaces for everyone.</p>
             <input type="email" placeholder="Enter your email" style="padding: 10px; border-radius: 20px; border: none; width: 200px;">
             <button class="btn">Join Now</button>
         </section>
 
         <section id="about">
             <h2>About Us</h2>
-            <p>WasteWise Guardian is a platform that allows people to report unpicked garbage to the government, enabling suitable actions to be taken for better waste management.</p>
-            <img src="C:\Users\nekyo\Downloads\people-volunteers-cleaning-city-park-600nw-1954174228.jpg" alt="Community Cleaning" style="width: 100%; max-width: 600px; border-radius: 10px;">
+            <p>EcoWaste Guardian is a platform that allows people to report unpicked garbage to the government, enabling suitable actions to be taken for better waste management.</p>
+            <img src="https://unsplash.com/photos/Yf1vE2Qdw-w/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8Mnx8d2FzdGUgbWFuYWdlbWVudHxlbnwwfHx8fDE3MjY4NzA5NzB8MA&force=true" alt="Community Cleaning" style="width: 100%; max-width: 600px; border-radius: 10px;">
         </section>
 
         <section id="report">
@@ -273,7 +273,7 @@
 
     <!-- Footer -->
     <footer>
-        <h3>WasteWise Solutions</h3>
+        <h3>EcoWaste Guardian</h3>
         <p>Empowering communities to report waste issues, fostering cleaner public spaces through collective action and education.</p>
         <a href="#">Instagram</a> <a href="#">X</a> <a href="#">Facebook</a>
         <p>Contact us: info@ecowasteguardian.com | +1 555-123-4567</p>
