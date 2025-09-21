@@ -1,0 +1,536 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoWaste Guardian</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Header */
+        header {
+            background-color: #00695C;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+
+        header h1 {
+            margin: 0;
+        }
+
+        /* Side Menu */
+        .sidenav {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.5s;
+            padding-top: 60px;
+        }
+
+        .sidenav a {
+            padding: 8px 8px 8px 32px;
+            text-decoration: none;
+            font-size: 25px;
+            color: #818181;
+            display: block;
+            transition: 0.3s;
+        }
+
+        .sidenav a:hover {
+            color: #f1f1f1;
+        }
+
+        .sidenav .closebtn {
+            position: absolute;
+            top: 0;
+            right: 25px;
+            font-size: 36px;
+            margin-left: 50px;
+        }
+
+        #menuBtn {
+            font-size: 30px;
+            cursor: pointer;
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 2;
+        }
+
+        /* Main Content */
+        main {
+            padding: 20px;
+            margin-left: 0;
+            transition: margin-left .5s;
+        }
+
+        section {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+
+        .hero {
+            background-color: #E0F2F1;
+            padding: 50px;
+        }
+
+        .hero h2 {
+            font-size: 2.5em;
+        }
+
+        .btn {
+            background-color: #00695C;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-size: 1em;
+        }
+
+        .btn:hover {
+            background-color: #004D40;
+        }
+
+        /* Charts */
+        .chart-container {
+            width: 50%;
+            margin: 0 auto;
+        }
+
+        /* Staff Login Modal */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.4);
+            padding-top: 60px;
+        }
+
+        .modal-content {
+            background-color: #fefefe;
+            margin: 5% auto;
+            padding: 20px;
+            border: 1px solid #888;
+            width: 80%;
+        }
+
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+        }
+
+        .close:hover,
+        .close:focus {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
+        }
+
+        /* Flowchart */
+        .flowchart {
+            display: flex;
+            justify-content: space-around;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .flow-step {
+            background-color: #E0F2F1;
+            padding: 10px;
+            border-radius: 10px;
+            width: 150px;
+            text-align: center;
+        }
+
+        .arrow {
+            font-size: 2em;
+            margin: 0 10px;
+        }
+
+        /* Footer */
+        footer {
+            background-color: #00695C;
+            color: white;
+            text-align: center;
+            padding: 20px;
+        }
+
+        footer a {
+            color: white;
+            margin: 0 10px;
+            text-decoration: none;
+        }
+
+        /* Chatbot Button */
+#chatbotButton {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #28a745;
+  color: white;
+  border-radius: 50%;
+  width: 55px;
+  height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  cursor: pointer;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+}
+
+/* Chatbot Window */
+#chatbotWindow {
+  display: none;
+  flex-direction: column;
+  position: fixed;
+  bottom: 90px;
+  right: 20px;
+  width: 300px;
+  max-height: 400px;
+  background: white;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+  overflow: hidden;
+}
+
+#chatbotHeader {
+  background: #28a745;
+  color: white;
+  padding: 10px;
+  font-weight: bold;
+  display: flex;
+  justify-content: space-between;
+}
+
+#chatbotMessages {
+  flex: 1;
+  padding: 10px;
+  overflow-y: auto;
+  font-size: 14px;
+}
+
+.bot-message {
+  background: #f1f1f1;
+  padding: 6px;
+  margin: 5px 0;
+  border-radius: 6px;
+}
+
+.user-message {
+  background: #28a745;
+  color: white;
+  padding: 6px;
+  margin: 5px 0;
+  border-radius: 6px;
+  text-align: right;
+}
+
+#chatbotInput {
+  display: flex;
+  border-top: 1px solid #ddd;
+}
+
+#chatbotInput input {
+  flex: 1;
+  padding: 8px;
+  border: none;
+  outline: none;
+}
+
+#chatbotInput button {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px 12px;
+  cursor: pointer;
+}
+
+    </style>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<script>
+document.getElementById('chatbotButton').addEventListener('click', () => {
+  document.getElementById('chatbotWindow').style.display = 'flex';
+});
+
+document.getElementById('closeChatbot').addEventListener('click', () => {
+  document.getElementById('chatbotWindow').style.display = 'none';
+});
+
+function addBotMessage(message) {
+  const messages = document.getElementById('chatbotMessages');
+  const msg = document.createElement('div');
+  msg.className = 'bot-message';
+  msg.innerHTML = message;
+  messages.appendChild(msg);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function addUserMessage(message) {
+  const messages = document.getElementById('chatbotMessages');
+  const msg = document.createElement('div');
+  msg.className = 'user-message';
+  msg.textContent = message;
+  messages.appendChild(msg);
+  messages.scrollTop = messages.scrollHeight;
+}
+
+function sendMessage() {
+  const input = document.getElementById('userInput');
+  const message = input.value.trim();
+  if (!message) return;
+  addUserMessage(message);
+  input.value = '';
+
+  // Very basic responses
+  if (message.toLowerCase().includes('report')) {
+    addBotMessage("You can report waste by clicking the 'Report Waste' button on the home page.");
+  } else if (message.toLowerCase().includes('hello')) {
+    addBotMessage("Hello! 👋 How can I help you keep your city clean?");
+  } else if (message.toLowerCase().includes('contact')) {
+    addBotMessage("You can reach us at <b>info@wastewise.com</b>");
+  } else {
+    addBotMessage("I'm still learning 🤖 — try asking about reporting waste, contact info, or saying hello!");
+  }
+}
+</script>
+
+
+<body>
+
+    <!-- 💬 Chatbot Button -->
+<div id="chatbotButton" onclick="toggleChatbot()">
+    💬
+</div>
+
+
+    
+    <!-- Side Menu -->
+    <span id="menuBtn" onclick="openNav()">&#9776;</span>
+    <div id="mySidenav" class="sidenav">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <a href="#home">Home</a>
+        <a href="#about">About</a>
+        <a href="#report">Report Waste</a>
+        <a href="#insights">Insights</a>
+        <a href="#contact">Contact</a>
+        <a href="#" onclick="openLoginModal()">Staff Login</a>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <h1>WasteWise Solutions</h1>
+    </header>
+
+    <!-- Main Content -->
+    <main id="main">
+        <section id="home" class="hero">
+            <h2>Empowering Communities to Eliminate Waste, Together</h2>
+            <p>Join WasteWise in our mission to combat unmanaged waste. Report issues, share evidence, and help create cleaner, healthier public spaces for everyone.</p>
+            <input type="email" placeholder="Enter your email" style="padding: 10px; border-radius: 20px; border: none; width: 200px;">
+            <button class="btn">Join Now</button>
+        </section>
+
+        <section id="about">
+            <h2>About Us</h2>
+            <p>WasteWise Guardian is a platform that allows people to report unpicked garbage to the government, enabling suitable actions to be taken for better waste management.</p>
+            <img src="C:\Users\nekyo\Downloads\sanitation-workers.jpg" alt="Community Cleaning" style="width: 100%; max-width: 600px; border-radius: 10px;">
+        </section>
+
+        <section id="report" style="text-align: center;">
+  <h2>Report Waste Issues Quickly and Easily</h2>
+  <p>Submit detailed reports with photo evidence directly through our platform. Help us identify and address waste hotspots efficiently.</p>
+
+  <!-- Image first -->
+  <img src="C:\Users\nekyo\Downloads\man-taking-picture-garbage-load-grass-using-smartphone-81687772.jpg" 
+       alt="Report Interface" 
+       style="width: 100%; max-width: 600px; border-radius: 10px; margin: 20px auto; display: block;">
+
+  <!-- Button below image -->
+   <!-- This will open report.html when clicked -->
+<a href="report.html">
+  
+
+    <button class="btn" style="margin-top: 15px;">Report Now</button>
+</a>
+</section>
+
+        <section style="text-align: center;">
+  <h2>Timely Government Action and Support</h2>
+  <p>We ensure your reports reach the right authorities for swift action. Get updates on the progress of waste management efforts.</p>
+
+  <!-- Image first -->
+  <img src="C:\Users\nekyo\Downloads\two-workers-collecting-garbage-urban-municipal-are-collecting-trash-removal-garbage-collector_61243-1445.jpg" 
+       alt="Government Action" 
+       style="width: 100%; max-width: 600px; border-radius: 10px; margin: 20px auto; display: block;">
+
+  <!-- Button below image -->
+  <button class="btn" style="margin-top: 15px;">Get Support</button>
+</section>
+
+
+        <section id="insights">
+            <h2>Data-Driven Insights</h2>
+            <p>Access analytics on waste patterns to inform better strategies and community initiatives.</p>
+            <div class="chart-container">
+                <canvas id="pieChart"></canvas>
+            </div>
+            <h3>Reporting Process Flowchart</h3>
+            <div class="flowchart">
+                <div class="flow-step">Spot Waste</div>
+                <span class="arrow">→</span>
+                <div class="flow-step">Take Photo</div>
+                <span class="arrow">→</span>
+                <div class="flow-step">Submit Report</div>
+                <span class="arrow">→</span>
+                <div class="flow-step">Government Action</div>
+                <span class="arrow">→</span>
+                <div class="flow-step">Update & Resolve</div>
+            </div>
+        </section>
+
+        <section>
+            <h2>Real-Time Updates</h2>
+            <p>Track the progress of your reports and see the impact of your contributions.</p>
+            <img src="C:\Users\nekyo\Downloads\3d-violet-cellphone-with-reminder-bell-notification-bubble-mockup-design-illustration-vector.jpg" alt="Real-Time Updates" style="width: 100%; max-width: 600px; border-radius: 10px;">
+        </section>
+
+        <section>
+            <h2>How Technology is Transforming Waste Reduction</h2>
+            <p>Learn about the innovative technologies and solutions that are revolutionizing waste reduction and promoting environmental sustainability.</p>
+            <img src="https://unsplash.com/photos/4_jhDO54BYg/download?ixid=M3wxMjA3fDB8MXxzZWFyY2h8MTJ8fHdhc3RlIG1hbmFnZW1lbnR8ZW58MHx8fHwxNzI2ODcwOTcwfDA&force=true" alt="Technology in Waste" style="width: 100%; max-width: 600px; border-radius: 10px;">
+        </section>
+
+        <section class="hero">
+            <h2>Ready to Make a Difference?</h2>
+            <p>Join EcoWaste Guardian and be part of the solution. Report, educate, and collaborate today!</p>
+            <input type="email" placeholder="Enter your email" style="padding: 10px; border-radius: 20px; border: none; width: 200px;">
+            <button class="btn">Join Now</button>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <h3>WasteWise Solutions</h3>
+        <p>Empowering communities to report waste issues, fostering cleaner public spaces through collective action and education.</p>
+        <a href="#">Instagram</a> <a href="#">X</a> <a href="#">Facebook</a>
+        <p>Contact us: info@ecowasteguardian.com | +1 555-123-4567</p>
+        <button class="btn">Report Waste Now</button>
+    </footer>
+
+    <!-- Staff Login Modal -->
+    <div id="loginModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeLoginModal()">&times;</span>
+            <h2>Staff Login</h2>
+            <form id="loginForm">
+                <label for="username">Username:</label>
+                <input type="text" id="username" required><br><br>
+                <label for="password">Password:</label>
+                <input type="password" id="password" required><br><br>
+                <button type="button" class="btn" onclick="login()">Login</button>
+            </form>
+            <div id="profile" style="display: none;">
+                <h3>Demo Sanitary Worker Profile</h3>
+                <p>Name: John Doe</p>
+                <p>Role: Sanitary Worker</p>
+                <p>Assigned Area: Downtown District</p>
+                <p>Reports Resolved: 150</p>
+                <p>Contact: john.doe@ecowaste.com</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Side Menu Functions
+        function openNav() {
+            document.getElementById("mySidenav").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        function closeNav() {
+            document.getElementById("mySidenav").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+
+        // Modal Functions
+        function openLoginModal() {
+            document.getElementById("loginModal").style.display = "block";
+            closeNav(); // Close side menu when opening modal
+        }
+
+        function closeLoginModal() {
+            document.getElementById("loginModal").style.display = "none";
+        }
+
+        function login() {
+            // Simple demo login (no real auth)
+            const username = document.getElementById("username").value;
+            const password = document.getElementById("password").value;
+            if (username && password) {
+                document.getElementById("loginForm").style.display = "none";
+                document.getElementById("profile").style.display = "block";
+            }
+        }
+
+        // Pie Chart
+        const ctx = document.getElementById('pieChart').getContext('2d');
+        const pieChart = new Chart(ctx, {
+            type: 'pie',
+            data: {
+                labels: ['Organic', 'Plastic', 'Paper', 'Metal', 'Other'],
+                datasets: [{
+                    data: [40, 25, 15, 10, 10],
+                    backgroundColor: ['#FF6384', '#36A2EB', '#FFCE56', '#4BC0C0', '#9966FF']
+                }]
+            },
+            options: {
+                responsive: true,
+                title: {
+                    display: true,
+                    text: 'Example Waste Types Distribution'
+                }
+            }
+        });
+    </script>
+    <!-- Chatbot Button -->
+<div id="chatbotButton">💬</div>
+
+<!-- Chatbot Window -->
+<div id="chatbotWindow">
+  <div id="chatbotHeader">
+    WasteWise Assistant
+    <span id="closeChatbot">&times;</span>
+  </div>
+  <div id="chatbotMessages"></div>
+  <div id="chatbotInput">
+    <input type="text" id="userInput" placeholder="Type your message...">
+    <button onclick="sendMessage()">Send</button>
+  </div>
+</div>
+
+</body>
+</html>

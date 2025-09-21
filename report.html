@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Report Waste | WasteWise Solutions</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f4f4f4;
+            color: #333;
+            text-align: center;
+            animation: fadeIn 1s ease-in;
+        }
+
+        header {
+            background: linear-gradient(90deg, #00695C, #00A896);
+            color: white;
+            padding: 20px;
+            box-shadow: 0 3px 8px rgba(0,0,0,0.2);
+            animation: slideDown 0.8s ease;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .btn {
+            background: linear-gradient(90deg, #00695C, #00A896);
+            color: white;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 15px rgba(0,0,0,0.3);
+        }
+
+        input, textarea {
+            width: 80%;
+            max-width: 500px;
+            margin: 10px auto;
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid #ccc;
+            display: block;
+            box-shadow: inset 0 1px 3px rgba(0,0,0,0.1);
+        }
+
+        input:focus, textarea:focus {
+            border-color: #00A896;
+            outline: none;
+            box-shadow: 0 0 6px #00A896;
+            transition: 0.3s;
+        }
+
+        img {
+            max-width: 600px;
+            width: 100%;
+            border-radius: 15px;
+            margin: 20px auto;
+            display: block;
+            box-shadow: 0 6px 15px rgba(0,0,0,0.2);
+            animation: zoomIn 0.8s ease;
+        }
+
+        footer {
+            background-color: #00695C;
+            color: white;
+            padding: 10px;
+            margin-top: 20px;
+            font-size: 0.9em;
+            letter-spacing: 0.5px;
+        }
+
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideDown {
+            from { transform: translateY(-30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+
+        @keyframes zoomIn {
+            from { transform: scale(0.9); opacity: 0; }
+            to { transform: scale(1); opacity: 1; }
+        }
+
+        /* Icon Styling */
+        .icon {
+            font-size: 1.3em;
+            margin-right: 8px;
+            vertical-align: middle;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>🗑️ Report Waste</h1>
+    </header>
+
+    <main>
+        <p>📍 Help us make our cities cleaner by reporting waste issues in your area.</p>
+        <img src="C:\Users\nekyo\Downloads\man-taking-picture-garbage-load-grass-using-smartphone-81687772.jpg" 
+             alt="Reporting Waste">
+
+        <form onsubmit="showThankYou(event)">
+            <input type="text" placeholder="📌 Enter Location" required>
+            <textarea rows="4" placeholder="📝 Describe the issue" required></textarea>
+            <input type="file" accept="image/*">
+            <button type="submit" class="btn">🚀 Submit Report</button>
+        </form>
+
+        <a href="index.html">
+            <button class="btn">⬅ Back to Home</button>
+        </a>
+    </main>
+
+    <footer>
+        <p>WasteWise Solutions © 2025 | Together for Cleaner Cities</p>
+    </footer>
+
+    <script>
+        function showThankYou(event) {
+            event.preventDefault();
+            alert("✅ Thank you! Your report has been submitted successfully.");
+            window.location.href = "index.html";
+        }
+    </script>
+
+</body>
+</html>
